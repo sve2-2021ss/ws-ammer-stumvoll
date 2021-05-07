@@ -1,0 +1,47 @@
+type Pipeline {
+    id: ID!
+    name: String!
+    jobs: [Job!]!
+}
+
+type Job {
+    id: ID!
+    started: Int
+    finished: Int
+    state: State!
+    logs: String
+    issuer: User!
+    changes: [Change!]!
+    stages: [Stage!]!
+}
+
+enum State {
+    RUNNING
+    UPCOMMING
+    FINISHED
+}
+
+type Stage {
+    id: ID!
+    name: String!
+    state: State!
+    startedAt: Int
+    finishedAt: Int
+}
+
+type User {
+    id: ID
+    name: String
+}
+
+type Change {
+    id: ID!
+    changer: User!
+    message: String!
+    changedFiles: [String!]!
+}
+
+type Query {
+    pipelines: [Pipeline!]!
+    pipeline(id: ID!): Pipeline
+}
