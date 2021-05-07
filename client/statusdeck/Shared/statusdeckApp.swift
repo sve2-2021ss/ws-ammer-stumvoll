@@ -8,10 +8,20 @@
 import SwiftUI
 
 @main
-struct statusdeckApp: App {
+struct StatusdeckApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            #if os(macOS)
+                NavigationView {
+                    Sidebar()
+                    ItemsListView(viewModel: ItemsViewModel(category: .pipelines))
+                }
+            #else
+                NavigationView {
+                    TabBar()
+                        .navigationTitle("Statusdeck")
+                }.navigationViewStyle(StackNavigationViewStyle())
+            #endif
         }
     }
 }

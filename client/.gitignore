@@ -96,8 +96,9 @@ xcuserdata
 # Xcode
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
-
-
+### BuildTools ###
+statusdeck/BuildTools/.build
+statusdeck/BuildTools/.swiftpm
 
 ## Gcc Patch
 /*.gcno
