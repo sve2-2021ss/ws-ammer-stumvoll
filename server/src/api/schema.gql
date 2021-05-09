@@ -6,6 +6,7 @@ type Pipeline {
 
 type Job {
     id: ID!
+    name: String
     started: Int
     finished: Int
     state: State!
@@ -16,8 +17,8 @@ type Job {
 }
 
 enum State {
+    UPCOMING
     RUNNING
-    UPCOMMING
     FINISHED
 }
 
@@ -38,7 +39,6 @@ type Change {
     id: ID!
     changer: User!
     message: String!
-    changedFiles: [String!]!
 }
 
 type Query {
