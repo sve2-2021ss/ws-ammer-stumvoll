@@ -1,5 +1,5 @@
 export enum State {
-    UPCOMING,
-    RUNNING,
-    FINISHED,
+    UPCOMING = "UPCOMING",
+    RUNNING = "RUNNING",
+    FINISHED = "FINISHED",
 }

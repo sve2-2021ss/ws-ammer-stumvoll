@@ -4,4 +4,5 @@ export interface Job {
     started?: number
     finished?: number
     logs: string,
+    issuerId: number,
 }
