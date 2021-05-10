@@ -7,8 +7,8 @@ type Pipeline {
 type Job {
     id: ID!
     name: String
-    started: Int
-    finished: Int
+    startedAt: Int
+    finishedAt: Int
     state: State!
     logs: String
     issuer: User!

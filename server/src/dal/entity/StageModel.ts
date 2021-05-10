@@ -16,10 +16,10 @@ export class StageModel {
     })
     state: State
 
-    @Column()
+    @Column({nullable: true})
     startedAt?: number
 
-    @Column()
+    @Column({nullable: true})
     finishedAt?: number
 
     @ManyToOne(() => JobModel, job => job.stages)

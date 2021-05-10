@@ -13,10 +13,10 @@ export class JobModel {
     @Column()
     name: string
 
-    @Column()
+    @Column({nullable: true})
     started?: number
 
-    @Column()
+    @Column({nullable: true})
     finished?: number
 
     @Column({
