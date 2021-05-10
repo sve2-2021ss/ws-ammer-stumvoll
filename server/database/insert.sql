@@ -1,14 +1,12 @@
--- Users
-INSERT INTO statusdeck.user_model (name)
-VALUES ('Felix');
-INSERT INTO statusdeck.user_model (name)
-VALUES ('Simon');
--- Pipelines
+
+INSERT INTO statusdeck.user_model (name) VALUES ('Felix');
+INSERT INTO statusdeck.user_model (name) VALUES ('Simon');
+
 INSERT INTO statusdeck.pipeline_model (name)
 VALUES ('Pipeline 1');
 INSERT INTO statusdeck.pipeline_model (name)
 VALUES ('Pipeline 2');
--- jobs
+
 INSERT INTO statusdeck.job_model (name, started, finished, state, pipelineId, issuerId, logs)
 VALUES ('1', 0, 1, 'FINISHED', 1, 1, '152.85.204.41 - - [10/May/2021:09:33:29 +0000] "PUT /integrate/action-items HTTP/2.0" 201 19740
 215.98.168.90 - yundt7862 [10/May/2021:09:33:39 +0000] "PATCH /disintermediate HTTP/2.0" 501 14727
@@ -513,7 +511,7 @@ VALUES ('1', 0, 1, 'FINISHED', 2, 2, '113.23.127.228 - quigley2715 [10/May/2021:
 217.162.52.109 - rippin2836 [10/May/2021:11:13:30 +0000] "HEAD /cultivate/aggregate HTTP/1.0" 501 2422
 133.163.47.213 - - [10/May/2021:11:13:50 +0000] "GET /convergence HTTP/1.0" 204 5646
 ');
--- stages
+
 INSERT INTO statusdeck.stage_model (name, state, startedAt, finishedAt, jobId, `order`)
 VALUES ('Test', 'FINISHED', 0, 1, 1, 1);
 INSERT INTO statusdeck.stage_model (name, state, startedAt, finishedAt, jobId, `order`)
@@ -532,7 +530,7 @@ INSERT INTO statusdeck.stage_model (name, state, startedAt, finishedAt, jobId, `
 VALUES ('Deploy to Appstore', 'UPCOMING', null, null, 2, 4);
 INSERT INTO statusdeck.stage_model (name, state, startedAt, finishedAt, jobId, `order`)
 VALUES ('Load Test', 'FINISHED', 1, 2, 1, 2);
--- changes
+
 INSERT INTO statusdeck.change_model (commitId, message, changerId, jobId)
 VALUES ('9f2e99614fdb1db6b6ab4d3734ede312c3fa3dbd', 'Initial Commit', 2, 2);
 INSERT INTO statusdeck.change_model (commitId, message, changerId, jobId)

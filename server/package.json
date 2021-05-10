@@ -6,6 +6,7 @@
   "scripts": {
     "start": "ts-node ./src/index.ts",
     "dev": "nodemon ./src/index.ts",
+    "insert": "ts-node ./src/insert.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
