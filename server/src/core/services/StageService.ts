@@ -11,6 +11,6 @@ export class StageService extends BaseService<StageModel> {
     }
 
     public getAllForEachJob(jobIds: number[]): Promise<StageModel[]> {
-        return this.repository.find({where: {jobId: In(jobIds)}})
+        return this.repository.find({where: {jobId: In(jobIds)}, order: {order: "ASC"}})
     }
 }

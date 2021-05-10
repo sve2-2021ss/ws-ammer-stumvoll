@@ -24,6 +24,7 @@ enum State {
 
 type Stage {
     id: ID!
+    order: Int!
     name: String!
     state: State!
     startedAt: Int

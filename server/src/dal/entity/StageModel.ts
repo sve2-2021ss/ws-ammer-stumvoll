@@ -8,6 +8,9 @@ export class StageModel {
     id: number
 
     @Column()
+    order: number
+
+    @Column()
     name: string
 
     @Column({
