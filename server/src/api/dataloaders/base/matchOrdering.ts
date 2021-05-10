@@ -1,13 +1,20 @@
-export const splitIntoChunksById = <T>(entities: T[], ids: readonly number[], idGetter: (entity: T) => number) =>
-    entities.reduce((result: T[][], item: T): T[][] => {
-        const i = ids.indexOf(idGetter(item))
-        result[i].push(item)
-        return result;
-    }, ids.map(_ => []))
+const groupBy = <T, K extends keyof T>(array: T[], key: K): Map<T[K], T[]> => {
+    const map = new Map<T[K], T[]>()
+    array.forEach(item => {
+        const arr = map.get(item[key]) || []
+        arr.push(item)
+        map.set(item[key], arr)
+    })
 
-export const matchOrderingById = <T extends { id: number }>(entities: T[], ids: readonly number[]) =>
-    entities.reduce((result: T[], item: T) => {
-        const i = ids.indexOf(item.id)
-        result[i] = item
-        return result
-    }, new Array(ids.length))
+    return map
+}
+
+export const splitIntoChunksById = <T, K extends keyof T>(entities: T[], ids: readonly (T[K])[], key: K): T[][] => {
+    const groupedBy = groupBy(entities, key)
+    return ids.map(id => groupedBy.get(id) ?? [])
+}
+
+export const matchOrderingById = <T extends { id: number }>(entities: T[], ids: readonly number[]): (T | Error)[] => {
+    const groupedById = groupBy(entities, "id")
+    return ids.flatMap((id): (T | Error)[] => groupedById.get(id) ?? [new Error()])
+}

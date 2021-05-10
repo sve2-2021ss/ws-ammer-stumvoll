@@ -6,7 +6,7 @@ import {splitIntoChunksById} from "./base/matchOrdering";
 
 const jobsByPipelineIdBatchFn: BatchLoadFn<number, Job[]> = async (keys) => {
     const jobs = await Container.get(JobService).getAllForEachPipeline([...keys])
-    return splitIntoChunksById(jobs, keys, (job) => job.pipelineId)
+    return splitIntoChunksById(jobs, keys, "pipelineId")
 }
 
 
