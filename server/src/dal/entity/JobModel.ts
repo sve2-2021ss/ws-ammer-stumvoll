@@ -25,7 +25,7 @@ export class JobModel {
     })
     state: State
 
-    @Column()
+    @Column({type: "text"})
     logs: string
 
     @ManyToOne(() => PipelineModel, pipeline => pipeline.jobs)
