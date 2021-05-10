@@ -1,5 +1,5 @@
 export interface Pipeline {
-    id: number;
-    name: string;
-    //jobs: Job[];
+    id: number
+    name: string
+    //jobs: Job[]
 }

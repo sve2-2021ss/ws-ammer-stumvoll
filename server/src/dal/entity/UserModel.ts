@@ -1,5 +1,5 @@
-import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
-import {JobModel} from "./JobModel";
+import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm"
+import {JobModel} from "./JobModel"
 
 @Entity()
 export class UserModel {

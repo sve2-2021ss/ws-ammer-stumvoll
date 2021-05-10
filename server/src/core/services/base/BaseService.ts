@@ -1,4 +1,4 @@
-import {In, Repository} from "typeorm";
+import {In, Repository} from "typeorm"
 
 export class BaseService<Entity extends { id: number }> {
 
@@ -6,7 +6,7 @@ export class BaseService<Entity extends { id: number }> {
     }
 
     public getById(id: number): Promise<Entity | undefined> {
-        return this.repository.findOne({where: {id}});
+        return this.repository.findOne({where: {id}})
     }
 
     public getAll(): Promise<Entity[]> {

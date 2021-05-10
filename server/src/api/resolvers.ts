@@ -1,11 +1,11 @@
-import {IResolvers} from "apollo-server";
-import {Context} from "./Context";
-import {State} from "../dal/entity/State";
-import {Pipeline} from "./types/Pipeline";
-import {Container} from "typedi";
-import {PipelineService} from "../core/services/PipelineService";
-import {Job} from "./types/Job";
-import {Change} from "./types/Change";
+import {IResolvers} from "apollo-server"
+import {Context} from "./Context"
+import {State} from "../dal/entity/State"
+import {Pipeline} from "./types/Pipeline"
+import {Container} from "typedi"
+import {PipelineService} from "../core/services/PipelineService"
+import {Job} from "./types/Job"
+import {Change} from "./types/Change"
 
 // noinspection JSUnusedGlobalSymbols
 export const resolvers: IResolvers<any, Context> = {
@@ -25,10 +25,10 @@ export const resolvers: IResolvers<any, Context> = {
     },
     Query: {
         pipeline(_, {id}): Promise<Pipeline | undefined> {
-            return Container.get(PipelineService).getById(id);
+            return Container.get(PipelineService).getById(id)
         },
         pipelines(): Promise<Pipeline[]> {
-            return Container.get(PipelineService).getAll();
+            return Container.get(PipelineService).getAll()
         }
     },
 }

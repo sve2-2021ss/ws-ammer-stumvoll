@@ -1,9 +1,9 @@
-import {Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
-import {PipelineModel} from "./PipelineModel";
-import {StageModel} from "./StageModel";
-import {ChangeModel} from "./ChangeModel";
-import {State} from "./State";
-import {UserModel} from "./UserModel";
+import {Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm"
+import {PipelineModel} from "./PipelineModel"
+import {StageModel} from "./StageModel"
+import {ChangeModel} from "./ChangeModel"
+import {State} from "./State"
+import {UserModel} from "./UserModel"
 
 @Entity()
 export class JobModel {

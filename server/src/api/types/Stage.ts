@@ -1,4 +1,4 @@
-import {State} from "../../dal/entity/State";
+import {State} from "../../dal/entity/State"
 
 export interface Stage {
     id: number

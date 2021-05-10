@@ -1,6 +1,6 @@
-import {State} from "./State";
-import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-import {JobModel} from "./JobModel";
+import {State} from "./State"
+import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from "typeorm"
+import {JobModel} from "./JobModel"
 
 @Entity()
 export class StageModel {

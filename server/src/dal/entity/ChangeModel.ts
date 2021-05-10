@@ -1,6 +1,6 @@
-import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-import {UserModel} from "./UserModel";
-import {JobModel} from "./JobModel";
+import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from "typeorm"
+import {UserModel} from "./UserModel"
+import {JobModel} from "./JobModel"
 
 @Entity()
 export class ChangeModel {
