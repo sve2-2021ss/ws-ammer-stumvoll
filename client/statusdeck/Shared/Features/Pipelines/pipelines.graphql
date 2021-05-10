@@ -1,0 +1,6 @@
+query Pipelines {
+  pipelines {
+	id
+	name
+  }
+}

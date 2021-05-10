@@ -35,6 +35,9 @@ DerivedData/
 *.dSYM.zip
 *.dSYM
 
+## Apollo
+ApolloCLI/
+
 ## Playgrounds
 timeline.xctimeline
 playground.xcworkspace
