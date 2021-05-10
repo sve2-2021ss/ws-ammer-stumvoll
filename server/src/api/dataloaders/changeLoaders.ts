@@ -9,5 +9,4 @@ const changesByJobIdBatchFn: BatchLoadFn<number, Change[]> = async (keys) => {
     return splitIntoChunksById(changes, keys, "jobId")
 }
 
-
 export const changesByJobIdLoader = () => new DataLoader(changesByJobIdBatchFn)

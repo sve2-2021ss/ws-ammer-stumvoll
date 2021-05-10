@@ -9,5 +9,4 @@ const userByIdBatchFn: BatchLoadFn<number, User> = async (keys) => {
     return matchOrderingById(users, keys)
 }
 
-
 export const userByIdLoader = () => new DataLoader(userByIdBatchFn)
