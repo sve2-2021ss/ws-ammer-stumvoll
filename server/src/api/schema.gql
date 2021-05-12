@@ -16,6 +16,19 @@ type Job {
     stages: [Stage!]!
 }
 
+type JobById {
+    id: ID!
+    name: String
+    startedAt: Int
+    finishedAt: Int
+    state: State!
+    logs: String
+    issuer: User!
+    changes: [Change!]!
+    stages: [Stage!]!
+    pipeline: Pipeline!
+}
+
 enum State {
     UPCOMING
     RUNNING
@@ -45,4 +58,5 @@ type Change {
 type Query {
     pipelines: [Pipeline!]!
     pipeline(id: ID!): Pipeline
+    job(id: ID!): JobById
 }
