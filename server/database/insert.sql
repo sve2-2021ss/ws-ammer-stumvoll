@@ -1,4 +1,3 @@
-
 INSERT INTO statusdeck.user_model (name) VALUES ('Felix');
 INSERT INTO statusdeck.user_model (name) VALUES ('Simon');
 

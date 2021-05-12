@@ -6,7 +6,7 @@ const readSqlFile = (filepath: string): string[] => {
     return readFileSync(join(__dirname, filepath))
         .toString()
         .replace(/\r?\n|\r/g, '')
-        .split('')
+        .split(';')
         .filter((query) => query?.length)
 }
 
