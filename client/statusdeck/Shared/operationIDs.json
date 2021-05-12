@@ -1,0 +1,6 @@
+{
+  "8df4275ed95660667a0378e6852fb2dd433bef53291d2688c9f4b4cdb9f9c430": {
+    "name": "Pipelines",
+    "source": "query Pipelines {\n  pipelines {\n    __typename\n    id\n    name\n  }\n}"
+  }
+}
