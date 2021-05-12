@@ -5,4 +5,5 @@ export interface Job {
     finished?: number
     logs: string,
     issuerId: number,
+    pipelineId: number
 }
