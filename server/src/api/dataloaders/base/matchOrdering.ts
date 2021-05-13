@@ -1,13 +1,10 @@
-const groupBy = <T, K extends keyof T>(array: T[], key: K): Map<T[K], T[]> => {
-    const map = new Map<T[K], T[]>()
-    array.forEach(item => {
+const groupBy = <T, K extends keyof T>(array: T[], key: K): Map<T[K], T[]> =>
+    array.reduce((map, item) => {
         const arr = map.get(item[key]) || []
         arr.push(item)
         map.set(item[key], arr)
-    })
-
-    return map
-}
+        return map;
+    }, new Map<T[K], T[]>())
 
 export const splitIntoChunksById = <T, K extends keyof T>(entities: T[], ids: readonly (T[K])[], key: K): T[][] => {
     const groupedBy = groupBy(entities, key)
