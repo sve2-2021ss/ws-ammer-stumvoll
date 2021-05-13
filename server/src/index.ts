@@ -14,7 +14,6 @@ async function startup() {
     await createConnection()
     const typeDefs = gql(readFileSync(join(__dirname, "./api/schema.gql"), "utf8").toString())
 
-
     const server = new ApolloServer({typeDefs, resolvers, context: createContext})
     const {url} = await server.listen()
     console.log(`Server started @ ${url}`)
