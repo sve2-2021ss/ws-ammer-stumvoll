@@ -2,6 +2,10 @@
 
 *tbd: describe the different ways to define the schema*
 
+## Implementation
+
+The statusdeck server
+
 ## Data Loader
 
 A common issue with GraphQL APIs is the n+1 query problem. This occurs for example when a user fetches a list of books
@@ -17,18 +21,16 @@ to be provided. This function receives a key array (keys can be anything e.g. an
 keys that should be loaded and returns an array of the result type containing the results corresponding to the keys.
 There are two constraints which must be fulfilled by this batching function:
 
-**The output array must be the same length as the key array.**
+* The output array must be the same length as the key array.
+* The index of each element of the output array must match the index of the key array.
 
-For example if the batch function receives the keys `[1,2,3]` but the database query didn't return anything for `2` the
-result array needs to contain a `null` value.
+These two constraints are necessary as the connection between key and result is based on the index, this means if a key
+has index `1` the result array needs to contain the result for this key also on index `1`.
 
-**The index of each element of the output array must match the index of the key array.**
-
-The connection between key and result is based on the index, this means if a key has index `1` the result array needs to
-contain the result for this key also on index `1`.
-
-To use a `DataLoader` it provides `load` function which receives the key and returns a promise of the return type. In
-the snippet below is an example of how a batch function is implemented and how the data loader is used.
+To use a `DataLoader` it provides `load` function which receives the key and returns a promise of the return type.
+The `DataLoader` also provides a caching mechanism which means the result of the load function is cached for a given key
+to reduce redundant loads. In the snippet below is an example of how a batch function is implemented and how the data
+loader is used.
 
 ```typescript
 const jobsByIdBatchFn: BatchLoadFn<number, Job> = async (keys) => {
@@ -40,7 +42,64 @@ const jobsByIdBatchFn: BatchLoadFn<number, Job> = async (keys) => {
 const dataLoader = new DataLoader(jobsByIdBatchFn)
 
 const result = await dataLoader.load(1)
+
+const result2 = await dataLoader.load(1) //yields the cached result
 ```
+
+As already mentioned does the `DataLoaders` also provide a caching mechanism. This means a `DataLoader` should only be
+used in the scope of a single request. Otherwise, some users might get cached results which were loaded from other
+users.
+
+To solve this in the implementation of the statusdeck server the context capability of apollo was used. This makes it
+possible to pass a context creation function to the server which creates a new context on each request. This context can
+then be accessed in the resolver functions.
+
+### Example
+
+The following example demonstrates how this works in the statusdeck server. The following query fetches all pipelines,
+for each pipeline all jobs and for all jobs the user who triggered it and all the changes with the user who changed it.
+
+```graphql
+{
+    pipelines {
+        name
+        jobs {
+            issuer {
+                name
+            }
+            name
+            changes {
+                message
+                changer {
+                    id
+                }
+            }
+        }
+    }
+}
+```
+
+The table below shows the amount of queries required for this request when no batching is used. Assuming the database
+contains 30 pipelines with 20 jobs each, which again contain 10 changes each, the query from above would lead to a total
+of **7631** separate queries executed.
+
+| Queries | Name of the Query              | Result Size |
+|---------|--------------------------------|-------------|
+| 1       | Get all pipelines              | n           |
+| n       | Get all jobs for each pipeline | m           |
+| n*m     | Get issuer for each job        | l           |
+| n*m     | Get all changes for each job   | k           |
+| n\*m\*k | Get changer for each change    | j           |
+
+Using a `DataLoader` for each entity means the amount of queries can be reduced to the just **4**.
+
+* Get all pipelines
+* Get all jobs where pipelineId in (..)
+* Get all users where id in (..)
+* Get all changes where jobId in (..)
+
+It also doesn't matter if the amount of pipelines or jobs increases as it would just lead to more parameters in
+each `in` query but not more queries executed.
 
 ## Schema Definition
 
@@ -52,6 +111,9 @@ A GraphQL schema can generally be generated in three ways:
 
 Since all three of those were considered for this exercise, the advantages and drawbacks will be described below. The
 evaluation is only based on the Node.js ecosystem.
+
+In the end, manual schema definition was used for the statusdeck server, as was deemed as the most practical solution
+with the best flexibility. It additionally does not require any dependencies.
 
 ### Manual Schema Definition
 
