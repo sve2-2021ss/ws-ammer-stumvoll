@@ -80,8 +80,8 @@ for each pipeline all jobs and for all jobs the user who triggered it and all th
 ```
 
 The table below shows the amount of queries required for this request when no batching is used. Assuming the database
-contains 30 pipelines with 20 jobs each, which again contain 10 changes each, the query from above would lead to a total
-of **7631** separate queries executed.
+contains 30 pipelines with 20 jobs each, which again contain 10 changes each, the query from above would lead in the
+worst case to a total of **7631** separate queries executed.
 
 | Queries | Name of the Query              | Result Size |
 |---------|--------------------------------|-------------|
