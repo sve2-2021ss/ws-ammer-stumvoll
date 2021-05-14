@@ -1,0 +1,30 @@
+query Job {
+  job(id: 1) {
+	id
+	name
+	startedAt
+	finishedAt
+	state
+	logs
+	issuer {
+	  id
+	  name
+	}
+	changes {
+	  id
+	  message
+	  changer {
+		id
+		name
+	  }
+	}
+	stages {
+	  id
+	  order
+	  name
+	  state
+	  startedAt
+	  finishedAt
+	}
+  }
+}

@@ -1,0 +1,15 @@
+included:
+- iOS
+- macOS
+- Shared
+excluded:
+- ApolloCodegen
+- Shared/API.swift
+
+disabled_rules:
+  - line_length
+  - type_body_length
+  
+identifier_name:
+  excluded:
+    - id

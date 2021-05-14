@@ -2,5 +2,8 @@ query Pipelines {
   pipelines {
 	id
 	name
+	jobs {
+	  state
+	}
   }
 }
