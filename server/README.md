@@ -1,10 +1,77 @@
 # Statusdeck Server
 
-*tbd: describe the different ways to define the schema*
-
 ## Implementation
 
-The statusdeck server
+The statusdeck server was implemented in Typescript using the `graphql` and the `apollo-server` library. In addition to
+that it uses `type-orm` as OR mapper and `type-di` for dependency injection.
+
+It provides consumers with information of CI/CD pipelines structured in the graph seen below. For this exercise the
+information is mocked and fetched from a database.
+
+```graphql
+type Pipeline {
+    id: ID!
+    name: String!
+    jobs: [Job!]!
+}
+
+type Job {
+    id: ID!
+    name: String
+    startedAt: Int
+    finishedAt: Int
+    state: State!
+    logs: String
+    issuer: User!
+    changes: [Change!]!
+    stages: [Stage!]!
+}
+
+type JobById {
+    id: ID!
+    name: String
+    startedAt: Int
+    finishedAt: Int
+    state: State!
+    logs: String
+    issuer: User!
+    changes: [Change!]!
+    stages: [Stage!]!
+    pipeline: Pipeline!
+}
+
+enum State {
+    UPCOMING
+    RUNNING
+    FINISHED
+}
+
+type Stage {
+    id: ID!
+    order: Int!
+    name: String!
+    state: State!
+    startedAt: Int
+    finishedAt: Int
+}
+
+type User {
+    id: ID
+    name: String
+}
+
+type Change {
+    id: ID!
+    changer: User!
+    message: String!
+}
+
+type Query {
+    pipelines: [Pipeline!]!
+    pipeline(id: ID!): Pipeline
+    job(id: ID!): JobById
+}
+```
 
 ## Data Loader
 

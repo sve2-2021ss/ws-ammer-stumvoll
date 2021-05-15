@@ -1,6 +1,5 @@
 import {IResolvers} from "apollo-server"
 import {Context} from "./Context"
-import {State} from "../dal/entity/State"
 import {Pipeline} from "./types/Pipeline"
 import {Container} from "typedi"
 import {PipelineService} from "../core/services/PipelineService"
@@ -20,15 +19,12 @@ export const resolvers: IResolvers<any, Context> = {
     JobById: {
         pipeline: (job: Job, _, {loaders}) => loaders.pipelinesById.load(job.pipelineId)
     },
-    State,
-    Stage: {},
-    User: {},
     Change: {
         changer: (change: Change, _, {loaders}) => loaders.usersById.load(change.changerId)
     },
     Query: {
-        pipeline: (_, {id}): Promise<Pipeline | undefined> => Container.get(PipelineService).getById(Number(id)),
-        pipelines: (): Promise<Pipeline[]> => Container.get(PipelineService).getAll(),
-        job: (pipeline: Pipeline, {id}, {loaders}): Promise<Job | undefined> => loaders.jobsById.load(Number(id))
+        pipeline: (_, {id}) => Container.get(PipelineService).getById(Number(id)),
+        pipelines: () => Container.get(PipelineService).getAll(),
+        job: (pipeline: Pipeline, {id}, {loaders}) => loaders.jobsById.load(Number(id))
     },
 }
