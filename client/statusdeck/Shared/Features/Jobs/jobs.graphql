@@ -1,5 +1,5 @@
-query Jobs {
-  pipeline(id: 1) {
+query Jobs($pipelineId: ID!) {
+  pipeline(id: $pipelineId) {
 	jobs {
 	  id
 	  name

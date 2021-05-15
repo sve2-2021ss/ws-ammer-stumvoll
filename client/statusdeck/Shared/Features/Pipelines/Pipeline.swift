@@ -55,23 +55,29 @@ struct Pipeline: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else if let error = viewModel.error {
             Label(error.localizedDescription, systemImage: "exclamationmark.triangle")
+                .padding(20)
         } else {
             List {
                 ForEach(viewModel.pipelines, id: \.id) { pipeline in
-                    HStack {
-                        if pipeline.jobs.allSatisfy({ job in
-                            job.state == State.finished
-                        }) {
-                            StateIndicator(state: .finished)
-                        } else if pipeline.jobs.contains(where: { job in
-                            job.state == State.running
-                        }) {
-                            StateIndicator(state: .running)
-                        } else {
-                            StateIndicator(state: .upcoming)
+                    NavigationLink(
+                        destination: Jobs(viewModel: JobsViewModel(id: pipeline.id)).navigationTitle("Jobs"),
+                        label: {
+                            HStack {
+                                if pipeline.jobs.allSatisfy({ job in
+                                    job.state == State.finished
+                                }) {
+                                    StateIndicator(state: .finished)
+                                } else if pipeline.jobs.contains(where: { job in
+                                    job.state == State.running
+                                }) {
+                                    StateIndicator(state: .running)
+                                } else {
+                                    StateIndicator(state: .upcoming)
+                                }
+                                Text(pipeline.name)
+                            }
                         }
-                        Text(pipeline.name)
-                    }
+                    )
                 }
             }
             .modifier(MultiplatformListModifier())

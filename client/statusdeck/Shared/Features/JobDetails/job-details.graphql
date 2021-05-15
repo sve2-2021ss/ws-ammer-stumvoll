@@ -1,5 +1,5 @@
-query Job {
-  job(id: 1) {
+query Job($jobId: ID!) {
+  job(id: $jobId) {
 	id
 	name
 	startedAt

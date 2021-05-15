@@ -53,8 +53,8 @@ public final class JobQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    query Job {
-      job(id: 1) {
+    query Job($jobId: ID!) {
+      job(id: $jobId) {
         __typename
         id
         name
@@ -92,9 +92,16 @@ public final class JobQuery: GraphQLQuery {
 
   public let operationName: String = "Job"
 
-  public let operationIdentifier: String? = "679c8c32d3510a8b0c6e6893f6c17300d7acf7eaac76ba7ce6e8ac830919f042"
+  public let operationIdentifier: String? = "68e5d86f4f23b1e51d62dbca217f67bab5ee6039e001160cdbd03f492b88a40c"
 
-  public init() {
+  public var jobId: GraphQLID
+
+  public init(jobId: GraphQLID) {
+    self.jobId = jobId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["jobId": jobId]
   }
 
   public struct Data: GraphQLSelectionSet {
@@ -102,7 +109,7 @@ public final class JobQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("job", arguments: ["id": 1], type: .object(Job.selections)),
+        GraphQLField("job", arguments: ["id": GraphQLVariable("jobId")], type: .object(Job.selections)),
       ]
     }
 
@@ -496,8 +503,8 @@ public final class JobsQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    query Jobs {
-      pipeline(id: 1) {
+    query Jobs($pipelineId: ID!) {
+      pipeline(id: $pipelineId) {
         __typename
         jobs {
           __typename
@@ -513,9 +520,16 @@ public final class JobsQuery: GraphQLQuery {
 
   public let operationName: String = "Jobs"
 
-  public let operationIdentifier: String? = "ad227bc54e58e4e8ee68927403be8ce2ad16f04f479e5bcb392e26e5f1baafb5"
+  public let operationIdentifier: String? = "b8493fadd56b8d781dbfba05e0b0943865b324755ba9c0a4941a90fa34ef8dd2"
 
-  public init() {
+  public var pipelineId: GraphQLID
+
+  public init(pipelineId: GraphQLID) {
+    self.pipelineId = pipelineId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["pipelineId": pipelineId]
   }
 
   public struct Data: GraphQLSelectionSet {
@@ -523,7 +537,7 @@ public final class JobsQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("pipeline", arguments: ["id": 1], type: .object(Pipeline.selections)),
+        GraphQLField("pipeline", arguments: ["id": GraphQLVariable("pipelineId")], type: .object(Pipeline.selections)),
       ]
     }
 

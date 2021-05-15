@@ -10,8 +10,9 @@ import SwiftUI
 struct MultiplatformListModifier: ViewModifier {
     func body(content: Content) -> some View {
         #if os(iOS)
-            return content.listStyle(GroupedListStyle())
+            return content.listStyle(InsetGroupedListStyle())
+        #else
+            return content
         #endif
-        return content
     }
 }

@@ -11,7 +11,16 @@ struct Settings: View {
     @ObservedObject var viewModel = SettingsViewModel()
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            #if os(iOS)
+                LottieView(name: "debug", loopMode: .loop)
+                    .frame(width: 250, height: 250)
+            #endif
+            HStack {
+                Text("Version: ")
+                Text(viewModel.versionString)
+            }
+        }
     }
 }
 

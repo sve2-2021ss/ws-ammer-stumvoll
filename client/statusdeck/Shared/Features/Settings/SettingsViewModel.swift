@@ -8,4 +8,10 @@
 import Combine
 import Foundation
 
-public class SettingsViewModel: ObservableObject {}
+public class SettingsViewModel: ObservableObject {
+    @Published var versionString: String
+
+    init() {
+        versionString = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "n/a"
+    }
+}
