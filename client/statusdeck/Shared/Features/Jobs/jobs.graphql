@@ -1,0 +1,11 @@
+query Jobs {
+  pipeline(id: 1) {
+	jobs {
+	  id
+	  name
+	  state
+	  startedAt
+	  finishedAt
+	}
+  }
+}

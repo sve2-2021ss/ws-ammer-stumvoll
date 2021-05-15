@@ -10,13 +10,19 @@ import SwiftUI
 struct TabBar: View {
     var body: some View {
         TabView {
-            ForEach(Category.allCases) { category in
-                ItemsListView(viewModel: ItemsViewModel(category: category))
-                    .tabItem {
-                        Image(systemName: category.icon)
-                        Text(category.name)
-                    }
+            NavigationView {
+                Pipeline(viewModel: PipelineViewModel())
             }
+            .navigationViewStyle(StackNavigationViewStyle())
+            .tabItem {
+                Image(systemName: "line.horizontal.3.decrease")
+                Text("Pipelines")
+            }
+            Settings(viewModel: SettingsViewModel())
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text("Settings")
+                }
         }
     }
 }

@@ -9,9 +9,12 @@ import SwiftUI
 
 struct Sidebar: View {
     var body: some View {
-        List(Category.allCases) { category in
-            NavigationLink(destination: ItemsListView(viewModel: ItemsViewModel(category: category))) {
-                Label(category.name, systemImage: category.icon)
+        List {
+            NavigationLink(destination: Pipeline(viewModel: PipelineViewModel())) {
+                Label("Pipeline", systemImage: "line.horizontal.3.decrease")
+            }
+            NavigationLink(destination: Settings(viewModel: SettingsViewModel())) {
+                Label("Settings", systemImage: "gear")
             }
         }
         .listStyle(SidebarListStyle())

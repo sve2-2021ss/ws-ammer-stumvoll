@@ -1,6 +1,14 @@
 {
-  "8df4275ed95660667a0378e6852fb2dd433bef53291d2688c9f4b4cdb9f9c430": {
+  "679c8c32d3510a8b0c6e6893f6c17300d7acf7eaac76ba7ce6e8ac830919f042": {
+    "name": "Job",
+    "source": "query Job {\n  job(id: 1) {\n    __typename\n    id\n    name\n    startedAt\n    finishedAt\n    state\n    logs\n    issuer {\n      __typename\n      id\n      name\n    }\n    changes {\n      __typename\n      id\n      message\n      changer {\n        __typename\n        id\n        name\n      }\n    }\n    stages {\n      __typename\n      id\n      order\n      name\n      state\n      startedAt\n      finishedAt\n    }\n  }\n}"
+  },
+  "ad227bc54e58e4e8ee68927403be8ce2ad16f04f479e5bcb392e26e5f1baafb5": {
+    "name": "Jobs",
+    "source": "query Jobs {\n  pipeline(id: 1) {\n    __typename\n    jobs {\n      __typename\n      id\n      name\n      state\n      startedAt\n      finishedAt\n    }\n  }\n}"
+  },
+  "619e21d70493252d15bc815e3cca9033878029c2a9ec53cf4c183e77ff791b6a": {
     "name": "Pipelines",
-    "source": "query Pipelines {\n  pipelines {\n    __typename\n    id\n    name\n  }\n}"
+    "source": "query Pipelines {\n  pipelines {\n    __typename\n    id\n    name\n    jobs {\n      __typename\n      state\n    }\n  }\n}"
   }
 }
