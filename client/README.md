@@ -1,3 +1,7 @@
 # Statusdeck Client
 
-*tbd: describe the API generation*
+## 📝 Libraries
+
+* `Apollo`
+* `ApolloCombine`
+* `Lottie`
