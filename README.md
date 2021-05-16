@@ -6,9 +6,9 @@ Third exercise for the subject 20_SVE2UE at FH OÖ Campus Hagenberg. The exercis
 
 ## tl;dr
 
-GraphQL provides multiple ways to define a schema, however defining the schema as text or in a file is the most flexible approach. It's not only the simplest to set up and it also doesn't require any additional dependencies to work. On top of other libraries, like the `dataloader` can be easily integrated into this solution.
+GraphQL provides multiple ways to define a schema, however defining the schema as text or in a file is the most flexible approach. It's not only the simplest to set up but it also doesn't require any additional dependencies to work. On top of other libraries, like the `dataloader` can be easily integrated into this solution.
 
-The `dataloader` library provides a great utility for solving the n+1 query problem of GraphQL. It does so by making it possible to batch multiple queries to the same entity. It additionally provides a caching mechanism to further improve performance. However to harness this power, the queries need to be written using `IN` clauses.
+The `dataloader` library provides a great utility for solving the n+1 query problem of GraphQL. It does so by making it possible to batch multiple requests to the same entity. It additionally provides a caching mechanism to further improve performance. However to harness this power, the queries need to be written using `IN` clauses.
 
 ## 🚩 Goal
 
