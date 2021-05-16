@@ -14,15 +14,27 @@ Create a GraphQL API and a client for CI/CD pipelines. Enables querying pipeline
 
 ## 🏗 Architecture
 
-*tbd*
+![](.github/architecture.png)
+
+The application itself is based on a three-tier architecture. The backend, written in NodeJS, uses MySQL to persist the data and offers a GraphQL endpoint for a multiplatform SwiftUI app.
 
 ## 📝 Requirements
 
-*tbd*
+* `docker`
+* `node`
+* `xcodebuild`
 
 ## 🚀 Get started
 
-*tbd*
+1. Start the backend and the client
+```sh
+make bootstrap
+```
+
+2. Insert test data
+```sh
+make test-data
+```
 
 ## 📱 Showcase
 
